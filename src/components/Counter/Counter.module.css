@@ -1,0 +1,76 @@
+.counterWrapper{
+   display: flex;
+   justify-content:space-around;
+   margin: 0 auto;
+   background: #0c2945;
+   width: 85em;
+   height: 85em;
+}
+.counterWrapper button{
+   width: 5em;
+}
+
+.blockSettings{
+   display: flex;
+   flex-direction: column;
+   justify-content:space-around;
+   margin-top: 5em;
+   width: 32em;
+   height: 32em;
+   background: #0c2945;
+   border: 0.3em #5fd8f9 solid;
+   border-radius: 0.7em;
+}
+
+.panelSettings{
+   display: flex;
+   flex-direction: column;
+   margin: 0 2em;
+   color:#5fd8f9;
+   background: #0c2945;  
+   border: 0.3em #5fd8f9 solid;
+   border-radius: 0.7em;
+}
+
+.panelSettings div{
+   display: flex;
+   justify-content:space-between;
+   margin: 0.5em 0;
+   padding: 0 0.5em;
+   align-items: center;
+}
+
+.panelSettings input{
+   height: 2em;
+   border-radius: 0.5em;
+   text-align: center;
+}
+
+
+.panelButtons{
+   margin: 0 auto;
+   background: blue;
+}
+
+.counter{
+   display: flex;
+   flex-direction: column;
+   justify-content:space-around;
+   margin-top: 5em;
+   background: green;
+   width: 32em;
+   height: 32em;
+   border: 0.3em #5fd8f9 solid;
+   border-radius: 0.7em
+}
+
+.displayCounter{
+   margin: 0 2em;
+   background: pink;
+}
+
+
+
+.panelButtonsCounter{
+   background: darkblue;
+}
