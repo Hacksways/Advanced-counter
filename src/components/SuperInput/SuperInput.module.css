@@ -1,0 +1,13 @@
+.superInput {
+   display: flex;
+   justify-content: space-between;
+   margin: 0.5em 0;
+   padding: 0 0.5em;
+   align-items: center;
+}
+
+.input {
+   height: 2em;
+   border-radius: 0.5em;
+   text-align: center;
+}

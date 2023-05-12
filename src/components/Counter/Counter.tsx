@@ -1,28 +1,14 @@
-import React from 'react'
+import { BlockCounter } from "./BlockCounter/BlockCounter"
+import { BlockSettings } from './BlockSettings/BlockSettings'
 import s from "./Counter.module.css"
 
 
-export const Counter = () => {
+export const Counter: React.FC = () => {
 
   return (
     <div className={s.counterWrapper}>
-      <div className={s.blockSettings}>
-        <div className={s.panelSettings}>
-          <div><span>max value:</span><input type="number" /></div>
-          <div><span>start value:</span><input type="number" /></div>
-        </div>
-        <div className={s.panelButtons}>
-          <button>set</button>
-        </div>
-      </div>
-      <div className={s.counter}>
-        <div className={s.displayCounter}>
-          value
-        </div>
-        <div className={s.panelButtonsCounter}>
-        <button>inc</button> <button>reset</button>
-        </div>
-      </div>
+      <BlockSettings />
+      <BlockCounter title={"value"} />
     </div>
   )
 

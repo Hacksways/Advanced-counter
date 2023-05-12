@@ -1,0 +1,10 @@
+.panelSettings{
+   display: flex;
+   flex-direction: column;
+   margin: 0 2em;
+   color:#5fd8f9;
+   background: #0c2945;  
+   border: 0.3em #5fd8f9 solid;
+   border-radius: 0.7em;
+}
+
