@@ -1,13 +1,16 @@
 import s from "./DisplayCounter.module.css"
+import React from "react";
 
 type DisplayCounterPropsType = {
-    displayValue: number
+    displayValue: number | string
+    maxValue: number
 }
 
-export const DisplayCounter: React.FC<DisplayCounterPropsType> = ({ displayValue }) => {
+export const DisplayCounter: React.FC<DisplayCounterPropsType> = ({displayValue, maxValue}) => {
+    const displayClass = `${s.displayCounter} ${displayValue === maxValue ? s.error : ""}`
 
     return (
-        <div className={s.displayCounter}>
+        <div className={displayClass}>
             {displayValue}
         </div>
     )

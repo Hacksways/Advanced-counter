@@ -9,6 +9,7 @@ type BlockSettingsPropsType = {
     maxValue: number
     changeMaxValue: (number: number) => void
     setStartValueOnDisplay: () => void
+    disableSetButton:boolean
 }
 
 export const BlockSettings: React.FC<BlockSettingsPropsType> = ({
@@ -16,7 +17,8 @@ export const BlockSettings: React.FC<BlockSettingsPropsType> = ({
                                                                     changeStartValue,
                                                                     maxValue,
                                                                     changeMaxValue,
-                                                                    setStartValueOnDisplay
+                                                                    setStartValueOnDisplay,
+                                                                    disableSetButton
                                                                 }) => {
 
     return (
@@ -24,7 +26,7 @@ export const BlockSettings: React.FC<BlockSettingsPropsType> = ({
             <PanelSettings startValue={startValue} changeStartValue={changeStartValue} maxValue={maxValue}
                            changeMaxValue={changeMaxValue}/>
             <div className={s.panelButtons}>
-                <SuperButton title={"set"} callBack={setStartValueOnDisplay}/>
+                <SuperButton title={"set"} callBack={setStartValueOnDisplay} disable={disableSetButton}/>
             </div>
         </div>
     )

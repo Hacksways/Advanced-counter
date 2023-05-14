@@ -3,7 +3,7 @@ import React from "react";
 
 type SuperButtonPropsType = {
     title: string
-    disable?: boolean
+    disable: boolean
     callBack: () => void
 }
 

@@ -4,8 +4,10 @@ import {DisplayCounter} from "./DisplayCounter/DisplayCounter"
 import React from "react";
 
 type BlockCounterPropsType = {
-    displayValue: number
-    disable: boolean
+    displayValue: number | string
+    maxValue: number
+    disableIncButton: boolean
+    disableResetButton: boolean
     setDisplayValue: (n: number) => void
     incrementValueOnDisplay: () => void
     resetValueOnDisplay: () => void
@@ -14,7 +16,9 @@ type BlockCounterPropsType = {
 
 export const BlockCounter: React.FC<BlockCounterPropsType> = ({
                                                                   displayValue,
-                                                                  disable,
+                                                                  maxValue,
+                                                                  disableIncButton,
+                                                                  disableResetButton,
                                                                   setDisplayValue,
                                                                   incrementValueOnDisplay,
                                                                   resetValueOnDisplay
@@ -22,10 +26,10 @@ export const BlockCounter: React.FC<BlockCounterPropsType> = ({
 
     return (
         <div className={s.blockCounter}>
-            <DisplayCounter displayValue={displayValue}/>
+            <DisplayCounter displayValue={displayValue} maxValue={maxValue}/>
             <div className={s.panelButtonsCounter}>
-                <SuperButton title={"inc"} callBack={incrementValueOnDisplay} disable={disable}/>
-                <SuperButton title={"reset"} callBack={resetValueOnDisplay}/>
+                <SuperButton title={"inc"} callBack={incrementValueOnDisplay} disable={disableIncButton}/>
+                <SuperButton title={"reset"} callBack={resetValueOnDisplay} disable={disableResetButton}/>
             </div>
         </div>
     )
