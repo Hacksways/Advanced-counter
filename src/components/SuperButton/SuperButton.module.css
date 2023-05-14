@@ -1,3 +1,9 @@
 .button {
+   margin: 0 auto;
    width: 5em;
+   font-size: 2em;
+   font-weight: bold;
+   background: #62D7FC;
+   border: #62D7FC 0.2em solid ;
+   border-radius: 0.4em;
 }

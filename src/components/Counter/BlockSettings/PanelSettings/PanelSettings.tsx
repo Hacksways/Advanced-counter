@@ -1,5 +1,6 @@
 import {SuperInput} from "../../../SuperInput/SuperInput"
 import s from "./PanelSettings.module.css"
+import React from "react";
 
 type PanelSettingsPropsType = {
     startValue: number
@@ -14,11 +15,12 @@ export const PanelSettings: React.FC<PanelSettingsPropsType> = ({
                                                                     maxValue,
                                                                     changeMaxValue
                                                                 }) => {
+    const superInputErrorClass = `${s.panelSettings} ${maxValue <= startValue ? s.error: ''}`
 
     return (
-        <div className={s.panelSettings}>
+        <div className={superInputErrorClass}>
             <SuperInput title={"max value:"} inputType={"number"} value={maxValue} callBack={changeMaxValue}/>
-            <SuperInput title={"start value:"} inputType={"number"} value={startValue} callBack={changeStartValue}/>
+            <SuperInput title={"start value:"} inputType={"number"} value={startValue} callBack={changeStartValue} />
         </div>
     )
 }

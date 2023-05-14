@@ -1,6 +1,14 @@
 .displayCounter {
-   margin: 0 2em;
-   background: pink;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin: 0 0.75em;
+   color: #5fd8f9;
+   border: 0.22em #5fd8f9 solid;
+   border-radius: 0.7em;
+   height: 3.52em;
+   font-size: 2em;
+   font-weight: bold;
 }
 .error{
    color: red;

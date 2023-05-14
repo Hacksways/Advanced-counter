@@ -7,7 +7,7 @@ type DisplayCounterPropsType = {
 }
 
 export const DisplayCounter: React.FC<DisplayCounterPropsType> = ({displayValue, maxValue}) => {
-    const displayClass = `${s.displayCounter} ${displayValue === maxValue ? s.error : ""}`
+    const displayClass = `${s.displayCounter} ${displayValue === maxValue || displayValue === "incorrect value!" ? s.error : ""}`
 
     return (
         <div className={displayClass}>

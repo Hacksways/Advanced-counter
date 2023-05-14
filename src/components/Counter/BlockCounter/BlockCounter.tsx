@@ -8,7 +8,6 @@ type BlockCounterPropsType = {
     maxValue: number
     disableIncButton: boolean
     disableResetButton: boolean
-    setDisplayValue: (n: number) => void
     incrementValueOnDisplay: () => void
     resetValueOnDisplay: () => void
 
@@ -19,7 +18,6 @@ export const BlockCounter: React.FC<BlockCounterPropsType> = ({
                                                                   maxValue,
                                                                   disableIncButton,
                                                                   disableResetButton,
-                                                                  setDisplayValue,
                                                                   incrementValueOnDisplay,
                                                                   resetValueOnDisplay
                                                               }) => {

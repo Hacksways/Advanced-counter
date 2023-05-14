@@ -9,7 +9,7 @@ type BlockSettingsPropsType = {
     maxValue: number
     changeMaxValue: (number: number) => void
     setStartValueOnDisplay: () => void
-    disableSetButton:boolean
+    disableSetButton: boolean
 }
 
 export const BlockSettings: React.FC<BlockSettingsPropsType> = ({

@@ -11,3 +11,7 @@
    border-radius: 0.5em;
    text-align: center;
 }
+
+.error{
+   background: #EF9CAC;
+}

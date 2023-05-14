@@ -1,10 +1,15 @@
 .panelSettings{
    display: flex;
+   font-size: 1.5em;
+   font-weight: bold;
    flex-direction: column;
-   margin: 0 2em;
+   margin: 0 1em;
    color:#5fd8f9;
-   background: #0c2945;  
    border: 0.3em #5fd8f9 solid;
    border-radius: 0.7em;
+
+}
+.error input{
+   background: #EF9CAC;
 }
 
