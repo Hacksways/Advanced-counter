@@ -1,14 +1,14 @@
 import s from "./DisplayCounter.module.css"
 
 type DisplayCounterPropsType = {
-    title: string
+    displayValue: number
 }
 
-export const DisplayCounter: React.FC<DisplayCounterPropsType> = ({ title }) => {
+export const DisplayCounter: React.FC<DisplayCounterPropsType> = ({ displayValue }) => {
 
     return (
         <div className={s.displayCounter}>
-            {title}
+            {displayValue}
         </div>
     )
 
