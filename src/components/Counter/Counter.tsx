@@ -1,38 +1,43 @@
-import React, {useEffect, useReducer} from "react"
-import {BlockCounter} from "./BlockCounter/BlockCounter"
-import {BlockSettings} from './BlockSettings/BlockSettings'
-import s from "./Counter.module.css"
-import {changeMaxValueAC, maxValueReducer} from "../../state/maxValueReducer";
-import {changeStartValueAC, startValueReducer} from "../../state/startValueReducer";
-import {displayValueReducer, setStartValueOnDisplayAC} from "../../state/displayValueReducer";
-import {disableIncButtonReducer, toggleButtonIncAC} from "../../state/disableIncButtonReducer";
-import {disableResetButtonReducer, toggleButtonResetAC} from "../../state/disableResetButtonReducer";
-import {disableSetButtonReducer, toggleButtonSetAC} from "../../state/disableSetButtonReducer";
+import React, {useEffect, useReducer} from "react";
+import {
+    changeMaxValueAC,
+    changeStartValueAC,
+    counterReducer,
+    setStartValueOnDisplayAC,
+    toggleButtonIncAC,
+    toggleButtonResetAC,
+    toggleButtonSetAC
+} from "../../state/counterReducer";
+import {BlockCounter} from "./BlockCounter/BlockCounter";
+import {BlockSettings} from './BlockSettings/BlockSettings';
+import s from "./Counter.module.css";
 
 
 export const Counter: React.FC = () => {
-    //For inputs settings
-    const [maxValue, dispatchMaxValue] = useReducer(maxValueReducer, 5)
-    const [startValue, dispatchStartValue] = useReducer(startValueReducer, 0)
-    //For display
-    const [displayValue, dispatchDisplayValue] = useReducer(displayValueReducer, startValue)
-    //For buttons status disable On/Off
-    const [disableIncButton, dispatchDisableIncButton] = useReducer(disableIncButtonReducer, false)
-    const [disableResetButton, dispatchDisableResetButton] = useReducer(disableResetButtonReducer, false)
-    const [disableSetButton, dispatchDisableSetButton] = useReducer(disableSetButtonReducer, true)
+
+    const [counter, dispatchCounter] = useReducer(counterReducer, {
+        maxValue: 5,
+        startValue: 0,
+        displayValue: 5,
+        disableIncButton: false,
+        disableResetButton: false,
+        disableSetButton: true,
+    })
+
+    const {maxValue, startValue, displayValue, disableIncButton, disableResetButton, disableSetButton} = counter
 
     useEffect(() => {
         const getValueFromLSForMaxValue = localStorage.getItem("maxValue")
         const getValueFromLSForStartValue = localStorage.getItem("startValue")
         const getValueFromLSForDisplayValue = localStorage.getItem("displayValue")
         if (getValueFromLSForMaxValue) {
-            dispatchMaxValue(changeMaxValueAC(JSON.parse(getValueFromLSForMaxValue)))
+            dispatchCounter(changeMaxValueAC(JSON.parse(getValueFromLSForMaxValue)))
         }
         if (getValueFromLSForStartValue) {
-            dispatchStartValue(changeStartValueAC(JSON.parse(getValueFromLSForStartValue)))
+            dispatchCounter(changeStartValueAC(JSON.parse(getValueFromLSForStartValue)))
         }
         if (getValueFromLSForDisplayValue) {
-            dispatchDisplayValue(setStartValueOnDisplayAC(JSON.parse(getValueFromLSForDisplayValue)))
+            dispatchCounter(setStartValueOnDisplayAC(JSON.parse(getValueFromLSForDisplayValue)))
         }
 
 
@@ -42,61 +47,61 @@ export const Counter: React.FC = () => {
         localStorage.setItem("maxValue", JSON.stringify(maxValue))
         localStorage.setItem("startValue", JSON.stringify(startValue))
         localStorage.setItem("displayValue", JSON.stringify(displayValue))
-        if (displayValue >= maxValue) {
-            dispatchDisableIncButton(toggleButtonIncAC(true))
+        if (+displayValue >= maxValue) {
+            dispatchCounter(toggleButtonIncAC(true))
         }
-        if (maxValue <= startValue || displayValue === "enter values and press 'set'" || displayValue === "incorrect value!") {
-            dispatchDisableIncButton(toggleButtonIncAC(true))
-            dispatchDisableResetButton(toggleButtonResetAC(true))
+        if ((maxValue <= startValue) || (displayValue === "enter values and press 'set'") || (displayValue === "incorrect value!")) {
+            dispatchCounter(toggleButtonIncAC(true))
+            dispatchCounter(toggleButtonResetAC(true))
         }
     }, [maxValue, startValue, displayValue])
 
 
     const changeMaxValue = (n: number) => {
-        dispatchMaxValue(changeMaxValueAC(n))
-        dispatchDisableIncButton(toggleButtonIncAC(true))
-        dispatchDisableResetButton(toggleButtonResetAC(true))
-        dispatchDisplayValue(setStartValueOnDisplayAC("enter values and press 'set'"))
-        dispatchDisableSetButton(toggleButtonSetAC(false))
-        if (n < 0 || startValue < 0 || n <= startValue) {
-            dispatchDisableSetButton(toggleButtonSetAC(true))
-            dispatchDisplayValue(setStartValueOnDisplayAC("incorrect value!"))
+        dispatchCounter(changeMaxValueAC(n))
+        dispatchCounter(toggleButtonIncAC(true))
+        dispatchCounter(toggleButtonResetAC(true))
+        dispatchCounter(setStartValueOnDisplayAC("enter values and press 'set'"))
+        dispatchCounter(toggleButtonSetAC(false))
+        if ((n < 0) || (startValue < 0) || (n <= startValue)) {
+            dispatchCounter(toggleButtonSetAC(true))
+            dispatchCounter(setStartValueOnDisplayAC("incorrect value!"))
         }
     }
 
     const changeStartValue = (n: number) => {
-        dispatchStartValue(changeStartValueAC(n))
-        dispatchDisableIncButton(toggleButtonIncAC(true))
-        dispatchDisableResetButton(toggleButtonResetAC(true))
-        dispatchDisplayValue(setStartValueOnDisplayAC("enter values and press 'set'"))
-        dispatchDisableSetButton(toggleButtonSetAC(false))
-        if (n < 0 || maxValue < 0 || maxValue <= n) {
-            dispatchDisableSetButton(toggleButtonSetAC(true))
-            dispatchDisplayValue(setStartValueOnDisplayAC("incorrect value!"))
+        dispatchCounter(changeStartValueAC(n))
+        dispatchCounter(toggleButtonIncAC(true))
+        dispatchCounter(toggleButtonResetAC(true))
+        dispatchCounter(setStartValueOnDisplayAC("enter values and press 'set'"))
+        dispatchCounter(toggleButtonSetAC(false))
+        if ((n < 0) || (maxValue < 0) || (maxValue <= n)) {
+            dispatchCounter(toggleButtonSetAC(true))
+            dispatchCounter(setStartValueOnDisplayAC("incorrect value!"))
         }
     }
 
     //OnClick button "set"
     const setStartValueOnDisplay = () => {
-        dispatchDisplayValue(setStartValueOnDisplayAC(startValue))
-        dispatchDisableIncButton(toggleButtonIncAC(false))
-        dispatchDisableResetButton(toggleButtonResetAC(false))
-        dispatchDisableSetButton(toggleButtonSetAC(true))
+        dispatchCounter(setStartValueOnDisplayAC(startValue))
+        dispatchCounter(toggleButtonIncAC(false))
+        dispatchCounter(toggleButtonResetAC(false))
+        dispatchCounter(toggleButtonSetAC(true))
     }
     //OnClick button "inc"
     const incrementValueOnDisplay = () => {
         if (typeof displayValue === "number") {
             const newDisplayValue = displayValue + 1
-            dispatchDisplayValue(setStartValueOnDisplayAC(newDisplayValue))
+            dispatchCounter(setStartValueOnDisplayAC(newDisplayValue))
             if (newDisplayValue >= maxValue) {
-                dispatchDisableIncButton(toggleButtonIncAC(true))
+                dispatchCounter(toggleButtonIncAC(true))
             }
         }
     }
     //OnClick button "reset"
     const resetValueOnDisplay = () => {
-        dispatchDisplayValue(setStartValueOnDisplayAC(0))
-        dispatchDisableIncButton(toggleButtonIncAC(false))
+        dispatchCounter(setStartValueOnDisplayAC(0))
+        dispatchCounter(toggleButtonIncAC(false))
     }
 
 
