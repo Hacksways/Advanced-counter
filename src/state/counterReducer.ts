@@ -1,6 +1,6 @@
 type CounterReducerType = IncrementValueOnDisplayACType | ToggleButtonResetACType | ToggleButtonSetACType | SetStartValueOnDisplayACType | ChangeMaxValueACType | ChangeStartValueACType
 
-export type stateType = {
+export type CounterStateType = {
     maxValue: number
     startValue: number
     displayValue: number | string
@@ -9,7 +9,16 @@ export type stateType = {
     disableSetButton: boolean
 }
 
-export const counterReducer = (state: stateType, action: CounterReducerType) => {
+const initialState: CounterStateType = {
+    maxValue: 5,
+    startValue: 0,
+    displayValue: 5,
+    disableIncButton: false,
+    disableResetButton: false,
+    disableSetButton: true,
+}
+
+export const counterReducer = (state = initialState, action: CounterReducerType) => {
     switch (action.type) {
         case "TOGGLE-BUTTON-INC": {
             return { ...state, disableIncButton: action.payload.onOff }
